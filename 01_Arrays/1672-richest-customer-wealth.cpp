@@ -8,22 +8,22 @@
 class Solution {
 public:
     int maximumWealth(vector<vector<int>>& accounts) {
-        int m = accounts.size();
-        int n = accounts[0].size();
-        vector<int> customer_wealth(m);
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                customer_wealth[i] += accounts[i][j];
-            }
-        }
-
         int wealth = 0;
+        int m = accounts.size();
+
         for (int i = 0; i < m; i++) {
-            if (wealth < customer_wealth[i]) {
-                wealth = customer_wealth[i];
+            int current_wealth = 0;
+            int n = accounts[i].size();
+            
+            for (int j = 0; j < n; j++) {
+                current_wealth += accounts[i][j];
+            }
+            
+            if (current_wealth > wealth) {
+                wealth = current_wealth;
             }
         }
+        
         return wealth;
     }
 };
